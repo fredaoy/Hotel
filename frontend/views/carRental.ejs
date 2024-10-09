@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Information</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Information</title>
+  <link rel="stylesheet" href="../CSS/car.css">
+  <script src="../map.js">window.onload = initialMap()</script>
+  <script async defer 
+           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiQO6D4Np0L-Cr5KlN826Cu2B4tcrQkSQ&callback=initialMap">
+          </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <img src="../project/logo.png" alt="Disney Hotel Logo">
+    <span><a href="../DisneyHome.html" class="textlogo">Disney Hotel.</a></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/home">Stays</a></li>
+    <li><a href="/carRentalPreview"><i class="fas fa-car"></i> Car rentals</a></li>
+    <li><a href="/booking">Booking</a></li>
+    <li class="profile-link">
+      <a href="/diary"><span>Diary</span><i class="fas fa-user"></i></a>
+    </li>
+    <li><a href="/diary"><i class="fas fa-question-circle"></i></a></li>
+  </ul>
+  <div class="user">
+    <a href="./profile"><img src="../project/profile.png" alt=""></a>
+    <a href="/logout">Logout</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Car Collections</h2>
+  <% if (car.length > 0) { %>
+    <% car.forEach(item => { %>
+  
+  <div class="book">
+    <div class="booking">
+      <img src="<%= item.image %>" alt="<%= item.name %>">
+      <div class="info">
+          <h4>Car: <%= item.carName %></h4>
+          <p>Description: <%= item.description %></p>
+
+        <div class="btn">
+          <p>Price: <%= item.price %></p>
+          <form id="form-<%= item.carRental_id %>" action="/carRentalConfirm" method="POST" onsubmit="event.preventDefault(); rentalConfirm('<%= item.carRental_id %>', '<%= hotelId %>');">
+            <input type="hidden" name="carRental_id" value="<%= item.carRental_id %>">
+            <input type="hidden" name="hotelId" value="<%= hotelId %>">
+            <button type="submit" class="input">Book</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<% }) %>
+<% } else { %>
+    <p>You have no bookings.</p>
+<% } %>
+</div> 
+
+<script>
+  function rentalConfirm(carRentalId, hotelId) {
+    Swal.fire({
+      title: 'Confirm Car Rental',
+      text: "Are you sure you want to proceed with this car rental?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, confirm it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById(`form-${carRentalId}`).submit();
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

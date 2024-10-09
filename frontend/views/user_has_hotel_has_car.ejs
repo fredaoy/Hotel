@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Rental Confirmation</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <link rel="stylesheet" href="../CSS/carConfirm.css">
+  <!-- <style>
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .booking-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      width: 300px;
+    }
+    .booking-item h4 {
+      margin-top: 0;
+    }
+    .booking-item .img {
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .booking-item .img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style> -->
+</head>
+<body>
+
+
+  <nav>
+    <div class="logo">
+      <img src="../project/logo.png" alt="Disney Hotel Logo">
+      <!-- <span class="textlogo">Disney Hotel.</span> -->
+      <span><a href="../DisneyHome.html" class="textlogo">Disney Hotel.</a></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/home">Stays</a></li>
+      <li><a href="/carRentalPreview"><i class="fas fa-car"></i> Car rentals</a></li>
+      <li><a href="/booking">Booking</a></li>
+      <li class="profile-link">
+        <a href="/diary"><span>Diary</span><i class="fas fa-user"></i></a>
+      </li>
+      <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
+    </ul>
+    <div class="user">
+      <a href="/profile"><img src="../project/profile.png" alt=""></a>
+      <a href="/logout">Logout</a>
+    </div>
+  </nav>
+
+
+  <div class="container">
+    <h2>Car Rental Confirmation</h2>
+    <% if (rentalconfirm.length > 0) { %>
+      <% rentalconfirm.forEach(item => { %> 
+    
+    <div class="book">
+      <div class="booking">
+        <img src="<%= item.image %>" alt="Car Image">
+        <div class="info">
+          <h4>Car: <%= item.carName %></h4>
+          <p>Description: <%= item.description %></p>
+
+          <div class="btn">
+            <!-- แก้ไข onclick เพื่อให้ส่ง carRentalId ถูกต้อง -->
+            <p>Booking Price: <%= item.price %></p>
+            <input type="button" value="Pay Now" onclick="payments('<%= item.carRental_id %>', '<%= hotelId %>')">
+            <form action="/deleteCar/<%= item.carRental_id %>" method="post">
+              <input type="submit" value="Cancel">
+            </form>
+            
+          </div>
+        </div>
+    </div>
+  <% }) %>
+  <% } else { %>
+      <p>You have no bookings.</p>
+  <% } %>
+</div> 
+
+
+
+  <script>
+    function payments(carRentalId, hotelId) {
+      Swal.fire({
+      title: "Successful",
+      text: "success",
+      icon: "success",
+      confirmButtonText: "ok"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = `/payments?hotelId=${hotelId}&carRentalId=${carRentalId}`;
+      }
+    });
+       
+    }
+</script>
+</body>
+</html>

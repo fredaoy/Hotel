@@ -1,0 +1,91 @@
+<!-- หน้านี้คือจะให้้กดตรงคำถามว่า disney Hotel. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Disney Hotel.(Tokyo) </title>
+    <link rel="stylesheet" href="../CSS/disneyHome.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="../project/logo.png" alt="Disney Hotel Logo">
+      <!-- <span class="textlogo">Disney Hotel.</span> -->
+      <span><a href="../DisneyHome.html" class="textlogo">Disney Hotel.</a></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/home">Stays</a></li>
+      <li><a href="/carRentalPreview"><i class="fas fa-car"></i> Car rentals</a></li>
+      <li><a href="/booking">Booking</a></li>
+      <li class="profile-link">
+        <a href="#"><span>Diary</span><i class="fas fa-user"></i></a>
+      </li>
+      <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
+    </ul>
+    <div class="user">
+        <a href="./profile"><img src="../project/profile.png" alt=""></a>
+      <a href="/logout">Logout</a>
+    </div>
+  </nav>
+
+      <section id="banner">
+        <img src="../project/banner1.png" alt="Welcome to Place of dream">
+      </section>
+              <div class="pp"><H2><p>Recommend</p></H2></div>  
+      <section id="recommend">
+       
+        <img src="../project/banner2.png" alt="อาหารเช้า">
+        <img src="../project/banner3.png" alt="">
+      </section>
+
+      <footer class="footer">
+        <div class="footer-content">
+          <link rel="stylesheet"
+        href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+                <img src="../project/logo.png">
+                <h1>Contact Us</h1>
+                <div class="icons">
+                    <a href="#"><i class='bx bx-phone'>             </i>    +6613050101</a><br>
+                    <a href="#"><i class='bx bx-link-alt'>          </i>    www.disney-land.hotel-tokyo.ac.th</a><br>
+                    <a href="#"><i class='bx bxl-instagram-alt'>    </i>    disney_hotel_tokyo</a><br>
+                    <a href="#"><i class='bx bxl-facebook-square'>  </i>    Disney Hotel Tokyo</a><br>
+                    <a href="#"><i class='bx bxl-gmail'>            </i>    disney-land.hotel@gmail.com</a><br>
+                </div>
+        </div>
+    
+        <div class="footer-content">
+            <h4>Stays</h4>
+            <li><a href="#">Deals</a></li>
+        </div>
+    
+        <div class="footer-content">
+            <h4>Car Rentals</h4>
+            <li><a href="#">Car Collections</a></li>
+        </div>
+    
+        <div class="footer-content">
+            <h4>Booking</h4>
+            <li><a href="#">Stays</a></li>
+            <li><a href="#">Car Rentals</a></li>
+        </div>
+        
+        <div class="footer-content">
+            <h4>Location</h4>
+            <li><a href="#">Disneyland Hotel Tokyo</a></li><br>
+            <script src="../map.js">
+              window.onload = initialMap(); 
+          </script>
+          <script async defer 
+                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiQO6D4Np0L-Cr5KlN826Cu2B4tcrQkSQ&callback=initialMap"></script>
+          <style>
+              #mapDisplay { height: 250px; width: 350px;}
+          </style>
+            <div id="mapDisplay" class="map">
+              
+            </div>
+        </div> 
+    </footer>
+    
+</body>
+</html>

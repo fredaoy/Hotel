@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diary</title>
+  <link rel="stylesheet" href="../CSS/diary.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="../project/logo.png" alt="Disney Hotel Logo">
+      <span><a href="../DisneyHome.html" class="textlogo">Disney Hotel.</a></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/home">Stays</a></li>
+      <li><a href="/carRentalPreview"><i class="fas fa-car"></i> Car rentals</a></li>
+      <li><a href="/booking">Booking</a></li>
+      <li class="profile-link">
+        <a href="/diary"><span>Diary</span><i class="fas fa-user"></i></a>
+      </li>
+      <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
+    </ul>
+    <div class="user">
+      <a href="./profile"><img src="../project/profile.png" alt=""></a>
+      <a href="/logout">Logout</a>
+    </div>
+  </nav>
+
+  <form class="form" action="/note" method="post">
+    <h2>Your Diary</h2>
+    <div class="flex">
+      <div class="img">
+        <img src="../project/profile.png" alt="profile">
+      </div>
+      <div class="container">
+        <textarea name="note" placeholder="Write your note here..."></textarea>
+        <div class="btn2">
+          <input type="submit" value="Submit">
+        </div>
+      </div>
+    </div>
+   
+  </form>
+
+
+
+  <div class="note2">
+    <% if (note && note.length > 0) { %>
+      <% note.forEach(item => { %>
+        <div class="container2">
+          <div class="img2">
+            <img src="../project/profile.png" alt="">
+          </div>
+          <div class="text">
+            <div class="info">
+              <p><%= item.diary %></p>
+            </div>
+            <div class="btn3">
+              <form id="editForm" action="/updateNote/<%= item.id %>" method="POST">
+                <input type="hidden" name="note" id="noteField" value="<%= item.diary %>">
+                <input type="submit" value="Edit" class="s1">
+              </form>
+              <form action="/deleteNote/<%= item.id %>" method="POST">
+                <input type="submit" value="Delete" class="s2">
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p class="p">You have no diary entries.</p>
+    <% } %>
+  </div>
+
+  <script>
+    document.getElementById('editForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // หยุดการส่งฟอร์มเพื่อทำการแก้ไข input ก่อน
+  
+      // ให้เข้าถึงค่า input และแก้ไขได้
+      var noteInput = document.getElementById('noteField');
+      var newValue = prompt('Please enter the new value:', noteInput.value);
+  
+      // ตรวจสอบว่าผู้ใช้ได้กด OK หรือไม่ และแก้ไขค่า input
+      if (newValue !== null) {
+        noteInput.value = newValue;
+        this.submit(); // ส่งฟอร์มไปยังเซิร์ฟเวอร์
+      }
+    });
+  </script>
+
+</body>
+</html>

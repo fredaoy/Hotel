@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="../CSS/profile.css">
+  
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="../project/logo.png " alt="Disney Hotel Logo">
+      <span><a href="../DisneyHome.html" class="textlogo">Disney Hotel.</a></span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/home">Stays</a></li>
+      <li><a href="/carRentalPreview"><i class="fas fa-car"></i> Car rentals</a></li>
+      <li><a href="/booking">Booking</a></li>
+      <li class="profile-link">
+        <a href="/diary"><span>Diary</span><i class="fas fa-user"></i></a>
+      </li>
+      <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
+    </ul>
+    <div class="user">
+      <a href="/profile"><img src="../project/profile.png" alt=""></a>
+      <a href="/logout">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="profile-logo">
+        <h2>Profile</h2>
+        <img src="../project/profile.png" alt="">
+    </div>
+
+    <form action="/updateProfile/<%= user.user_id %>" method="POST">
+      <div class="input-group">
+        <label for="firstname">Name</label>
+        <input type="text" name="firstname" id="firstname" value="<%= user.firstname %>" disabled>
+        <label for="lastname">Lastname</label>
+        <input type="text" name="lastname" id="lastname" value="<%= user.lastname %>" disabled>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="<%= user.email %>" disabled>
+      </div>
+
+      <div class="input-group">
+        <label for="phone">Phone</label>
+        <input type="number" name="phone" id="phone" value="<%= user.phone %>" disabled>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" value="<%= user.password %>" disabled>
+      </div>
+
+      <div class="flex">
+
+
+      <div class="button-group">
+        <button type="button" id="edit-button" onclick="enableEditing()">Edit</button>
+        <button type="submit" id="submit-button" style="display: none;">Submit</button>
+        <button type="button" id="cancel-button" style="display: none;" onclick="disableEditing()">Cancel</button>
+      </div>
+    </form>
+
+    <form action="/deleteProfile/<%= user.user_id %>" method="POST" style="display: inline;">
+      <button type="submit" id="delete-button">Delete</button>
+    </form>
+  </div>
+          
+</div>
+
+
+
+<script>
+  function enableEditing() {
+    document.querySelectorAll('.input-group input').forEach(input => {
+      input.disabled = false;
+    });
+    document.getElementById('edit-button').style.display = 'none';
+    document.getElementById('submit-button').style.display = 'inline';
+    document.getElementById('cancel-button').style.display = 'inline';
+    document.getElementById('delete-button').style.display = 'none';
+  }
+
+  function disableEditing() {
+    document.querySelectorAll('.input-group input').forEach(input => {
+      input.disabled = true;
+    });
+    document.getElementById('edit-button').style.display = 'inline';
+    document.getElementById('submit-button').style.display = 'none';
+    document.getElementById('cancel-button').style.display = 'none';
+    document.getElementById('delete-button').style.display = 'inline';
+  }
+
+</script>
+</body>
+</html>

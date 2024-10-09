@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Setup</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <div class="container">
+    <div class="image-section">
+      <img src="project/register.png" alt="Disney Characters">
+    </div>
+    <div class="form-section">
+      <h2>Set up your account !</h2>
+      <form action="/signup" method="post">
+        <input type="text" placeholder="Firstname" required name="fn">
+        <input type="text" placeholder="LastName" required name="ln">
+        <input type="number" placeholder="Mobile Number" required name="phone" maxlength="10" minlength="10">
+        <input type="email" placeholder="Email Address" required name="email">
+        <input type="password" placeholder="Password" required name="pwd">
+        <!-- <input type="password" placeholder="Confirm Password" required> -->
+        <!-- <div class="checkbox">
+          <input type="checkbox" id="confirm" required>
+          <label for="confirm">Confirm Password</label>
+        </div> -->
+        <button type="submit">Continue</button>
+      </form>
+      <p>Already have an account? <a href="./login.html">Sign in</a></p>
+    </div>
+  </div>
+</body>
+</html>

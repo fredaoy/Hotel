@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="../CSS/booking.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+</head> 
+<body>
+
+
+    <nav>
+        <div class="logo">
+          <img src="../project/logo.png" alt="Disney Hotel Logo">
+          <!-- <span class="textlogo">Disney Hotel.</span> -->
+          <span><a href="../DisneyHome.html" class="textlogo">Disney Hotel.</a></span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="/home">Stays</a></li>
+          <li><a href="/carRentalPreview"><i class="fas fa-car"></i> Car rentals</a></li>
+          <li><a href="/booking">Booking</a></li>
+          <li class="profile-link">
+            <a href="/diary"><span>Diary</span><i class="fas fa-user"></i></a>
+          </li>
+          <li><a href="#"><i class="fas fa-question-circle"></i></a></li>
+        </ul>
+        <div class="user">
+            <a href="./profile"><img src="../project/profile.png" alt=""></a>
+          <a href="/logout">Logout</a>
+        </div>
+      </nav>
+
+
+      <div class="container">
+        <h2>Your Booking</h2>
+        <% if (bookings.length > 0) { %>
+        <% bookings.forEach(booking => { %>
+        
+        <div class="book">
+          <div class="booking">
+            <img src="<%= booking.image %>" alt="Room Image">
+            <div class="info">
+                <h4>Room: <%= booking.name %></h4>
+                <p>Address: <%= booking.description %></p>
+    
+              <div class="btn">
+                <p>Booking Price: <%= booking.price %></p>
+                <input type="button" value="Confirm" onclick="optionCarAndPayments('<%= booking.hotel_id %>')">
+                <form action="/deleteHotel/<%= booking.hotel_id %>" method="post">
+                    <input type="submit" value="Cancel"> 
+                </form>
+            </div>
+            </div>
+          
+          </div>
+        </div>
+      <% }) %>
+      <% } else { %>
+          <p>You have no bookings.</p>
+      <% } %>
+  </div> 
+
+
+    <!-- <h2>My Bookings</h2>
+    <div class="container">
+        <% if (bookings.length > 0) { %>
+            <% bookings.forEach(booking => { %>
+                <div class="booking-item">
+                    <div class="img">
+                        <img src="<%= booking.image %>" alt="Room Image">
+                    </div>
+                    <h4>Room: <%= booking.name %></h4>
+                    <p>Address: <%= booking.description %></p>
+                    <p>Booking Price: <%= booking.price %></p>
+
+                    <div class="btn">
+                        <input type="button" value="Confirm" onclick="optionCarAndPayments('<%= booking.hotel_id %>')">
+                        <form action="/deleteHotel/<%= booking.hotel_id %>" method="post">
+                            <input type="submit" value="Cancel"> 
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>You have no bookings.</p>
+        <% } %>
+    </div> -->
+
+    
+
+    <script>
+        function optionCarAndPayments(hotel_id) {
+            Swal.fire({
+                title: "Confirm Booking",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Do you want to rent car?",
+                denyButtonText: `payment`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/carRental?hotelId=${hotel_id}`;
+                } else if (result.isDenied) {
+                    window.location.href = `/payments?hotelId=${hotel_id}`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
